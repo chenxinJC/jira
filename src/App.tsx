@@ -11,4 +11,13 @@ function App() {
   );
 }
 
+function test() {
+  let a = "1";
+  if (a) {
+    console.log(1);
+  } else {
+    console.log(2);
+  }
+}
+
 export default App;
