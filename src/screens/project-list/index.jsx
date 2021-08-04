@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import axios from 'axios'
+import qs from 'qs'
 import { SearchPanel } from "./search-panel"
 import { List } from "./list"
 
@@ -13,9 +14,13 @@ export const ProjectListScreens = () => {
   const [list, setList] = useState([])
   const [users, setUsers] = useState([])
   useEffect(() => {
-    axios.get(`${apiUrl}/projects`).then(async response => {
-      if(response.status === 200) {
-        setList(await response.data)
+    const query = qs.stringify(Object.keys(param).filter(key => param[key]).reduce((obj, key) => {
+      obj[key] = param[key]
+      return obj
+    }, {}))
+    axios.get(`${apiUrl}/projects?${query}`).then(response => {
+      if (response.status === 200) {
+        setList(response.data)
       }
     })
   }, [param])
