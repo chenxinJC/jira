@@ -12,10 +12,24 @@
   "projects": [
     {
       "id": 1,
-      "name": "团购 app",
+      "name": "团购app",
       "personId": 2,
       "organization": "团购组",
       "created": 160432963263
+    },
+    {
+      "id": 2,
+      "name": "测试app",
+      "personId": 2,
+      "organization": "测试组",
+      "created": 161432463211
+    },
+    {
+      "id": 3,
+      "name": "特殊",
+      "personId": 1,
+      "organization": "测试组",
+      "created": 161432463222
     }
   ]
 }
