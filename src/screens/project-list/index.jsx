@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import qs from "qs";
+import { cleanObject, useMount, useDebounce } from "utils";
+import { _like } from "utils/jsonServerPrams";
 import { SearchPanel } from "./search-panel";
 import { List } from "./list";
 
@@ -11,34 +13,24 @@ export const ProjectListScreens = () => {
     name: "",
     personId: "",
   });
+  const debounceParam = useDebounce(param);
   const [list, setList] = useState([]);
   const [users, setUsers] = useState([]);
   useEffect(() => {
-    const query = qs.stringify(
-      Object.keys(param)
-        .filter((key) => param[key])
-        .reduce((obj, key) => {
-          if (key === "name") {
-            obj[key + "_like"] = param[key];
-          } else {
-            obj[key] = param[key];
-          }
-          return obj;
-        }, {})
-    );
+    const query = qs.stringify(_like(cleanObject(debounceParam), "name"));
     axios.get(`${apiUrl}/projects?${query}`).then((response) => {
       if (response.status === 200) {
         setList(response.data);
       }
     });
-  }, [param]);
-  useEffect(() => {
+  }, [debounceParam]);
+  useMount(() => {
     fetch(`${apiUrl}/users`).then(async (response) => {
       if (response.ok) {
         setUsers(await response.json());
       }
     });
-  }, []);
+  });
   return (
     <div>
       <SearchPanel users={users} param={param} setParam={setParam} />
