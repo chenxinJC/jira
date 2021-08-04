@@ -10,6 +10,7 @@
  *revert:	回滚到上一个版本
  *style:	代码格式修改, 注意不是 css 修改
  *test:	    测试用例修改
+ *delete:	  删除文件
  */
 module.exports = {
   extends: ["@commitlint/config-conventional"],
@@ -29,6 +30,7 @@ module.exports = {
         "revert",
         "style",
         "test",
+        "delete",
       ],
     ],
     // "type-case": [0],
