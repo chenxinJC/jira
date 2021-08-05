@@ -3,7 +3,7 @@
  * @Author: chenxin
  * @Date: 2021-08-04 20:32:40
  * @LastEditors: chenxin
- * @LastEditTime: 2021-08-05 11:24:55
+ * @LastEditTime: 2021-08-05 14:21:45
  */
 
 import { useState, useEffect } from "react";
@@ -43,7 +43,7 @@ export const useMount = (callback: () => void) => {
   }
 } */
 
-export const useDebounce = (value: unknown, delay?: number): any => {
+export const useDebounce = <V>(value: V, delay?: number): any => {
   const [debouncedValue, setDebouncedValue] = useState(value);
   useEffect(() => {
     // 每次在value变化以后，设置一个定时器
