@@ -1,9 +1,10 @@
-import React from "react";
+import React, { FormEvent } from "react";
 import axios from "axios";
+import { useAuth } from "context/auth-context";
 
 export const LoginScreen = () => {
   const apiUrl = process.env.REACT_APP_API_URL;
-  const login = (param: { username: string; password: string }) => {
+  /* const login = (param: { username: string; password: string }) => {
     axios
       .post(`${apiUrl}/login`, param, {
         headers: {
@@ -13,17 +14,10 @@ export const LoginScreen = () => {
       .then((res) => {
         console.log(res);
       });
-    /* fetch(`${apiUrl}/login`, {
-            method: 'POST',
-            body: JSON.stringify(param),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(res => {
-        }) */
   };
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+ */
+  const { login, user } = useAuth();
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const username = (event.currentTarget.elements[0] as HTMLInputElement)
       .value;
@@ -33,6 +27,7 @@ export const LoginScreen = () => {
   };
   return (
     <form onSubmit={handleSubmit}>
+      {user?.name}
       <div>
         <label htmlFor="username">用户名</label>
         <input type="text" id={"username"} />
