@@ -1,9 +1,9 @@
-import React, { FormEvent } from 'react'
-import axios from 'axios'
+import { FormEvent } from 'react'
+// import axios from 'axios'
 import { useAuth } from 'context/auth-context'
 
 export const LoginScreen = () => {
-    const apiUrl = process.env.REACT_APP_API_URL
+    // const apiUrl = process.env.REACT_APP_API_URL
     /* const login = (param: { username: string; password: string }) => {
     axios
       .post(`${apiUrl}/login`, param, {
