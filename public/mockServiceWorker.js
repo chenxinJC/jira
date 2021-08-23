@@ -10,7 +10,7 @@
 const INTEGRITY_CHECKSUM = '65d33ca82955e1c5928aed19d1bdf3f9'
 const bypassHeaderName = 'x-msw-bypass'
 let clients = {}
-
+let a = 0
 self.addEventListener('install', function () {
     return self.skipWaiting()
 })
